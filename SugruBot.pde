@@ -1,13 +1,14 @@
-Arm arm0 = new Arm(new PVector(0, 0), 100);
+Arm arm0 = new Arm(new PVector(300, 300), 100);
 
 void setup() {
   size(600, 600);
   smooth();
-  background(0);
-  stroke(255);
 }
 
 void draw() {
+  background(0);
+  stroke(255);
+  
   // draw first line
-  arm0.updateAngle(0);
+  arm0.updateAngle(48);
 }
