@@ -25,6 +25,7 @@ class Arm {
     end = new PVector(endX, endY);
   }
   
+  // Sets the origin to a new PVector
   void setOrigin(PVector newOrigin) {
     start = newOrigin;
   }
@@ -42,6 +43,11 @@ class Arm {
   // Returns the destination of the arm.
   PVector getEnd() {
     return end;
+  }
+  
+  // Returns the arm's length.
+  float getLength() {
+    return armLength;
   }
 }
 
