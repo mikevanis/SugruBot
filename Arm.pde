@@ -1,25 +1,37 @@
 class Arm {
   PVector start;
   PVector end;
-  int angle;
-  int armLength;
+  float angle;
+  float armLength;
 
-  Arm(PVector origin, int len) {
+  Arm(PVector origin, float len, float deg) {
     start = origin;
     armLength = len;
     angle = 0;
-    //lineAngle(start, angle, armLength);
+    calcEnd();
   }
-
-  // Updates the angle of the arm.
-  void updateAngle(int deg) {
-    float rad = radians(deg);
-    lineAngle(start, rad, armLength);
+  
+  // Draw a line rotated at different kinds of 
+  void drawLine(float deg) {
+    angle = radians(deg);
+    calcEnd();
+    line(start.x, start.y, end.x, end.y);
+  }
+  
+  // Calculate the end point of the arm in coordinates and update the PVector
+  void calcEnd() {
+    float endX = start.x + cos(angle) * armLength;
+    float endY = start.y - sin(angle) * armLength;
+    end = new PVector(endX, endY);
+  }
+  
+  void setOrigin(PVector newOrigin) {
+    start = newOrigin;
   }
 
   // Returns the angle of the arm.
-  int getAngle() {
-    return angle;
+  float getAngle() {
+    return degrees(angle);
   }
 
   // Returns the origin of the arm.
@@ -30,11 +42,6 @@ class Arm {
   // Returns the destination of the arm.
   PVector getEnd() {
     return end;
-  }
-
-  // Draw a line on the screen with a given origin, angle and length.
-  void lineAngle(PVector origin, float angle, float length) {
-    line(origin.x, origin.y, origin.x+cos(angle)*length, origin.y-sin(angle)*length);
   }
 }
 
